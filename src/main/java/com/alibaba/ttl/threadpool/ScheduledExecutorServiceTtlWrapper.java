@@ -4,6 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlCallable;
 import com.alibaba.ttl.TtlRunnable;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.*;
 
 /**
@@ -17,7 +18,7 @@ import java.util.concurrent.*;
 class ScheduledExecutorServiceTtlWrapper extends ExecutorServiceTtlWrapper implements ScheduledExecutorService {
     final ScheduledExecutorService scheduledExecutorService;
 
-    public ScheduledExecutorServiceTtlWrapper(ScheduledExecutorService scheduledExecutorService) {
+    public ScheduledExecutorServiceTtlWrapper(@Nonnull ScheduledExecutorService scheduledExecutorService) {
         super(scheduledExecutorService);
         this.scheduledExecutorService = scheduledExecutorService;
     }
@@ -43,6 +44,7 @@ class ScheduledExecutorServiceTtlWrapper extends ExecutorServiceTtlWrapper imple
     }
 
     @Override
+    @Nonnull
     public ScheduledExecutorService unwrap() {
         return scheduledExecutorService;
     }

@@ -1,5 +1,6 @@
 package com.alibaba.ttl;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public final class TtlCallable<V> implements Callable<V> {
     private final Callable<V> callable;
     private final boolean releaseTtlValueReferenceAfterCall;
 
-    private TtlCallable(Callable<V> callable, boolean releaseTtlValueReferenceAfterCall) {
+    private TtlCallable(@Nonnull Callable<V> callable, boolean releaseTtlValueReferenceAfterCall) {
         this.capturedRef = new AtomicReference<Object>(capture());
         this.callable = callable;
         this.releaseTtlValueReferenceAfterCall = releaseTtlValueReferenceAfterCall;
@@ -55,6 +56,7 @@ public final class TtlCallable<V> implements Callable<V> {
         }
     }
 
+    @Nonnull
     public Callable<V> getCallable() {
         return callable;
     }

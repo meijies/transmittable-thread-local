@@ -4,6 +4,7 @@ import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlCallable;
 import com.alibaba.ttl.TtlRunnable;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
@@ -19,7 +20,7 @@ import java.util.concurrent.*;
 class ExecutorServiceTtlWrapper extends ExecutorTtlWrapper implements ExecutorService {
     private final ExecutorService executorService;
 
-    ExecutorServiceTtlWrapper(ExecutorService executorService) {
+    ExecutorServiceTtlWrapper(@Nonnull ExecutorService executorService) {
         super(executorService);
         this.executorService = executorService;
     }
@@ -84,6 +85,7 @@ class ExecutorServiceTtlWrapper extends ExecutorTtlWrapper implements ExecutorSe
         return executorService.invokeAny(TtlCallable.gets(tasks), timeout, unit);
     }
 
+    @Nonnull
     @Override
     public ExecutorService unwrap() {
         return executorService;
